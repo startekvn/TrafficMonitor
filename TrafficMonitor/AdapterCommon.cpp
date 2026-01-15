@@ -85,13 +85,11 @@ void CAdapterCommon::GetIfTableInfo(vector<NetWorkConection>& adapters, MIB_IFTA
 		index = FindConnectionInIfTable(adapters[i].description, pIfTable);
 		if (index == -1)		//如果使用精确匹配的方式没有找到，则采用模糊匹配的方式再查找一次
 			index = FindConnectionInIfTableFuzzy(adapters[i].description, pIfTable);
-		//if (index != -1)
-		//{
+
 		adapters[i].index = index;
 		adapters[i].in_bytes = pIfTable->table[index].dwInOctets;
 		adapters[i].out_bytes = pIfTable->table[index].dwOutOctets;
 		adapters[i].description_2 = (const char*)pIfTable->table[index].bDescr;
-		//}
 	}
 }
 
